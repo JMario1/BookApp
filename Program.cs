@@ -37,15 +37,13 @@ builder.Services.AddAuthentication(options => {
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
 });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
-
-var dbContext = app.Services.GetRequiredService<AppDbContext>();
-dbContext.Database.Migrate();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -62,4 +60,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.Services.GetRequiredService<AppDbContext>().Database.Migrate();
+
 app.Run();
+
