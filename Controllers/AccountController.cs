@@ -39,7 +39,7 @@ namespace BookApp.Controllers
             var result =  await _accountManager.CreateAsync(user, userData.Password);
             if(!result.Succeeded) return UnprocessableEntity("failed to create account");
             
-            return Created("Acount added", result);
+            return Created("Acount added", new {email = user.Email, user = user.UserName});
         }
 
         [HttpPost("login")]
