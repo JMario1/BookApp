@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using BookApp.Data;
 using BookApp.Models;
@@ -15,6 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
@@ -39,7 +41,11 @@ builder.Services.AddAuthentication(options => {
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
+
+var dbContext = app.Services.GetRequiredService<AppDbContext>();
+dbContext.Database.Migrate();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
