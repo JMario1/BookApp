@@ -16,6 +16,6 @@ namespace BookApp.Models
         [Required]
         [Display(Name = "Confirm Password")]
         [Compare("Password")]
-        public string? ComfirmPassword { get; set; } 
+        public string? ConfirmPassword { get; set; } 
     }
 }

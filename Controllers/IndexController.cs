@@ -4,7 +4,7 @@ namespace BookApp.Controllers
 {[
     
     ApiController]
-    [Route("[controller]")]
+    [Route("/")]
     public class IndexController : ControllerBase
     {
         private readonly ILogger<BookController> _logger;
