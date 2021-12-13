@@ -32,6 +32,7 @@ namespace BookApp.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult<List<Author>> GetAll() 
         {
             List<Author> authors = _dbContext.Authors.ToList();

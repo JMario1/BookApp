@@ -31,6 +31,7 @@ namespace BookApp.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public  ActionResult<List<Book>> GetAll() 
         {
             List<Book> books = _dbContext.Books.Include(ctx => ctx.Author).ToList();
