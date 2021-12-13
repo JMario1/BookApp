@@ -14,6 +14,7 @@ namespace BookApp.Controllers
         
         }
 
+        [HttpGet]
         public ActionResult Index(){
             var message = new {
                 Login = "api/login",
